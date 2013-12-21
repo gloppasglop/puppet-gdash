@@ -9,3 +9,5 @@ project_page 'https://github.com/bfraser/puppet-gdash'
 
 ## Add dependencies, if any:
 # dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/vcsrepo', '>= 0.2.0'
+dependency 'richardc/datacat', '>= 0.4.2'
