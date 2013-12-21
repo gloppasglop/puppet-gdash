@@ -29,13 +29,95 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Bill Fraser <fraser@pythian.com>
 #
 # === Copyright
 #
-# Copyright 2013 Your name here, unless otherwise noted.
+# Copyright 2013 Bill Fraser
 #
-class gdash {
+class gdash (
+    $graphitehost   ='127.0.0.1',
+    $gdashroot      = '/usr/local/gdash'
+) {
+    class { "gdash::configure": }
 
+    package { [ "ruby-devel", "rubygem-rack" ]:
+        ensure      => present,
+    }
 
+    package { "rubygem-redcarpet":
+        ensure      => present,
+        require     => Package['rubygem-rack']
+    }
+
+    package { "bundler":
+        ensure      => present,
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "commonjs":
+        ensure      => "0.2.6",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "json":
+        ensure      => "1.7.7",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "less":
+        ensure      => "2.2.1",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "rack":
+        ensure      => "1.4.5",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "rack-protection":
+        ensure      => "1.2.0",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "sinatra":
+        ensure      => "1.3.3",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "therubyracer":
+        ensure      => "0.10.1",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "tilt":
+        ensure      => "1.3.3",
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    package { "gdash":
+        ensure      => present,
+        provider    => "gem",
+        require     => Package["ruby-devel"],
+    }
+
+    file { "${gdashroot}/config":
+        ensure      => directory;
+    }
+
+    file { "${gdashroot}/config/gdash.yaml":
+        content     => template("gdash/gdash.yaml.erb"),
+        group       => "root",
+        owner       => "root",
+        require     => [ Package['gdash'], File["${gdashroot}/config"] ],
+    }
 }

@@ -1,0 +1,30 @@
+title       '<%= @data['graph_title'] %>'
+vtitle      '<%= @data['vtitle'] %>'
+description '<%= @data['description'] %>'
+
+area       :<%= @data['area'] %>
+
+<% if @data['ymin'] != 'undef' -%>
+ymin <%= @data['ymin'] %>
+<% end -%>
+<% if @data['ymax'] != 'undef' -%>
+ymax <%= @data['ymax'] %>
+<% end -%>
+
+<%
+@data['fields'].each do |f|
+  def f.<=>( b )
+    self['name'] <=> b['name']
+  end
+end
+-%>
+<% @data['fields'].sort.each do |f| -%>
+field :<%= f['name'] %>,
+  :scale => <%= f['scale'].to_f %>,
+<% if f['color'] != 'undef' -%>
+  :color => '<%= f['color'] %>',
+<% end -%>
+  :alias => '<%= f['alias'] %>',
+  :data  => '<%= f['data'] %>';
+
+<% end -%>

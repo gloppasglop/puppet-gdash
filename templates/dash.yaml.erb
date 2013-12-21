@@ -1,0 +1,8 @@
+---
+:name:        <%= @title %>
+:description: <%= @description %>
+
+:graph_properties:
+<% @graph_properties.each do |prop, val| -%>
+  :<%= prop %>: <%= val %>
+<% end -%>
