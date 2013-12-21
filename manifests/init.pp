@@ -132,6 +132,6 @@ class gdash (
         content     => template('gdash/gdash.yaml.erb'),
         group       => 'root',
         owner       => 'root',
-        require     => [ Package['gdash'], File["${gdashroot}/config"] ],
+        require     => File["${gdashroot}/config"],
     }
 }
