@@ -62,6 +62,12 @@ class gdash (
         require     => Package['ruby-devel'],
     }
 
+    package { 'graphite_graph':
+        ensure      => '0.0.8',
+        provider    => 'gem',
+        require     => Package['ruby-devel'],
+    }
+
     package { 'json':
         ensure      => '1.7.7',
         provider    => 'gem',
@@ -104,10 +110,18 @@ class gdash (
         require     => Package['ruby-devel'],
     }
 
-    package { 'gdash':
+    # Install Git
+    package { 'git':
         ensure      => present,
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
+    }
+
+    # Clone GDash Git repository
+    vcsrepo { 'gdash':
+        path            => $gdashroot,
+        ensure          => present,
+        provider        => 'git',
+        source          => 'https://github.com/ripienaar/gdash.git',
+        require         => Package['git'],
     }
 
     file { "${gdashroot}/config":
