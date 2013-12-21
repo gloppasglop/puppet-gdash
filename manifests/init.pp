@@ -125,7 +125,8 @@ class gdash (
     }
 
     file { "${gdashroot}/config":
-        ensure      => directory;
+        ensure      => directory,
+        require     => Vcsrepo['gdash'],
     }
 
     file { "${gdashroot}/config/gdash.yaml":
