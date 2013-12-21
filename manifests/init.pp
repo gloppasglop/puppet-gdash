@@ -36,9 +36,9 @@
 # Copyright 2013 Bill Fraser
 #
 class gdash (
-    $graphitehost   ='127.0.0.1',
-    $gdashroot      = '/usr/local/gdash'
-) {
+    $graphite_host   = $gdash::params::graphite_host,
+    $gdash_root      = $gdash::params::gdash_root, 
+) inherits gdash::params {
     class { 'gdash::configure': }
 
     package { [ 'ruby-devel', 'rubygem-rack' ]:
@@ -117,22 +117,22 @@ class gdash (
 
     # Clone GDash Git repository
     vcsrepo { 'gdash':
-        path            => $gdashroot,
+        path            => $gdash_root,
         ensure          => present,
         provider        => 'git',
         source          => 'https://github.com/ripienaar/gdash.git',
         require         => Package['git'],
     }
 
-    file { "${gdashroot}/config":
+    file { "${gdash_root}/config":
         ensure      => directory,
         require     => Vcsrepo['gdash'],
     }
 
-    file { "${gdashroot}/config/gdash.yaml":
+    file { "${gdash_root}/config/gdash.yaml":
         content     => template('gdash/gdash.yaml.erb'),
         group       => 'root',
         owner       => 'root',
-        require     => File["${gdashroot}/config"],
+        require     => File["${gdash_root}/config"],
     }
 }
