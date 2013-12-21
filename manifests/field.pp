@@ -1,17 +1,18 @@
+# Add a field to your graph
 define gdash::field(
+    $graph,
+    $data,
     $scale = 1,
-    $category = "servers",
+    $category = 'servers',
     $dashboard = $hostname,
     $color = undef,
     $legend_alias = $title,
-    $graph,
-    $data
 ) {
     Gdash::Graph[$graph] -> Gdash::Field[$title]
 
     datacat_fragment { "${category}_${graph}_${title}":
         target      => "${gdash::configure::template_dir}/${category}/${dashboard}/${graph}.graph",
-        loglevel    => "debug",
+        loglevel    => 'debug',
         data        => {
             fields  => [
                 {
