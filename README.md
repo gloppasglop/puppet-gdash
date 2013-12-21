@@ -74,7 +74,7 @@ To install GDash with the default parameters:
     class { 'gdash': }
 ```
 
-This assumes that you have Graphite running on the same server as GDash, and that you will to install GDash to /usr/local/gdash. To establish customized parameters:
+This assumes that you have Graphite running on the same server as GDash, and that you want to install GDash to /usr/local/gdash. To establish customized parameters:
 
 ```puppet
     class { 'gdash':
