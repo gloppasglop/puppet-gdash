@@ -2,6 +2,20 @@
 
 ####Table of Contents
 
+1. [Overview](#overview)
+2. [Module Description](#module-description)
+3. [Setup](#setup)
+    * [Beginning with GDash](#beginning-with-gdash)
+4. [Implementation](#implementation)
+    * [Classes and Defined Types](#classes-and-defined-types)
+        * [Defined Type: gdash::category](#defined-type-category)
+        * [Defined Type: gdash::dashboard](#defined-type-dashboard)
+        * [Defined Type: gdash::graph](#defined-type-graph)
+        * [Defined Type: gdash::field](#defined-type-field)
+    * [Templates](#templates)
+5. [Limitations](#limitations)
+6. [Copyright and License](#copyright-and-license)
+
 ##Overview
 
 This module installs GDash and enables creation of dashboards using manifests.
