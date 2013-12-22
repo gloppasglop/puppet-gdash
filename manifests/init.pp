@@ -117,8 +117,8 @@ class gdash (
 
     # Clone GDash Git repository
     vcsrepo { 'gdash':
-        path            => $gdash_root,
         ensure          => present,
+        path            => $gdash_root,
         provider        => 'git',
         source          => 'https://github.com/ripienaar/gdash.git',
         require         => Package['git'],
