@@ -24,7 +24,6 @@ define gdash::graph(
             area        => $area,
             ymax        => $ymax,
             ymin        => $ymin,
-            alpha       => $alpha,
             vtitle      => $vtitle,
             graph_title => $graph_title,
             description => $description,
