@@ -1,5 +1,7 @@
 #gdash
 
+[![Build Status](https://travis-ci.org/bfraser/puppet-gdash.png?branch=master)](https://travis-ci.org/bfraser/puppet-gdash)
+
 ####Table of Contents
 
 1. [Overview](#overview)
