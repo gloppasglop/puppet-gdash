@@ -38,7 +38,9 @@
 class gdash (
     $graphite_host   = $gdash::params::graphite_host,
     $gdash_root      = $gdash::params::gdash_root,
-) inherits gdash::params {
+) {
+    include gdash::params
+
     class { 'gdash::configure': }
 
     package { [ 'ruby-devel', 'rubygem-rack' ]:
