@@ -80,7 +80,7 @@ This assumes that you have Graphite running on the same server as GDash, and tha
 
 ```puppet
     class { 'gdash':
-      graphite_host     => 'graphite.example.com',
+      graphite_host     => 'http://graphite.example.com',
       gdash_root        => '/opt/gdash',
     }
 ```
