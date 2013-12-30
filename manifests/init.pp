@@ -42,77 +42,8 @@ class gdash (
 
     class { 'gdash::configure': }
 
-    package { [ 'ruby-devel', 'rubygem-rack' ]:
-        ensure      => present,
-    }
-
-    package { 'rubygem-redcarpet':
-        ensure      => present,
-        require     => Package['rubygem-rack']
-    }
-
-    package { 'bundler':
-        ensure      => present,
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'commonjs':
-        ensure      => '0.2.6',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'graphite_graph':
-        ensure      => '0.0.8',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'json':
-        ensure      => '1.7.7',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'less':
-        ensure      => '2.2.1',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'rack':
-        ensure      => '1.4.5',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'rack-protection':
-        ensure      => '1.2.0',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'sinatra':
-        ensure      => '1.3.3',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'therubyracer':
-        ensure      => '0.10.1',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    package { 'tilt':
-        ensure      => '1.3.3',
-        provider    => 'gem',
-        require     => Package['ruby-devel'],
-    }
-
-    # Install Git
-    package { 'git':
+    # Install necessary packages
+    package { [ 'ruby-devel', 'git' ]:
         ensure      => present,
     }
 
@@ -125,11 +56,22 @@ class gdash (
         require         => Package['git'],
     }
 
+    # Install application dependencies using Bundler
+    bundler::install { $gdash_root:
+        user        => 'root',
+        group       => 'root',
+        deployment  => true,
+        without     => 'development test doc',
+        require     => [ Package['ruby-devel'], Vcsrepo['gdash'] ],
+    }
+
+    # Create config directory
     file { "${gdash_root}/config":
         ensure      => directory,
         require     => Vcsrepo['gdash'],
     }
 
+    # Create default dashboard
     file { "${gdash_root}/config/gdash.yaml":
         content     => template('gdash/gdash.yaml.erb'),
         group       => 'root',

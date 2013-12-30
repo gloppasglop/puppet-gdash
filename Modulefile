@@ -1,5 +1,5 @@
 name    'bfraser-gdash'
-version '0.1.0'
+version '0.1.1'
 source 'git://github.com/bfraser/puppet-gdash.git'
 author 'bfraser'
 license 'Apache License, Version 2.0'
@@ -9,5 +9,7 @@ project_page 'https://github.com/bfraser/puppet-gdash'
 
 ## Add dependencies, if any:
 # dependency 'username/name', '>= 1.2.0'
+dependency 'ploperations/bundler', '>= 1.0.0'
+dependency 'puppetlabs/ruby', '>= 0.1.0'
 dependency 'puppetlabs/vcsrepo', '>= 0.2.0'
 dependency 'richardc/datacat', '>= 0.4.2'
