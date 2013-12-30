@@ -13,6 +13,6 @@
 # Sample Usage:
 #
 class gdash::params {
-    $graphite_host  = '127.0.0.1',
-    $gdash_root     = '/usr/local/gdash',
+    $graphite_host  = '127.0.0.1'
+    $gdash_root     = '/usr/local/gdash'
 }
