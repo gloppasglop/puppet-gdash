@@ -63,7 +63,7 @@ class gdash (
         group       => 'root',
         deployment  => true,
         without     => 'development test doc',
-        require     => [ Package['ruby-devel'], Vcsrepo['gdash'] ],
+        require     => [ Package[$gdash::params::ruby_dev_pkg], Vcsrepo['gdash'] ],
     }
 
     # Create config directory
