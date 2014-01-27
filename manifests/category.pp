@@ -7,5 +7,7 @@ define gdash::category() {
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
+        force   => true,
+        purge   => true, 
     }
 }

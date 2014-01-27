@@ -38,6 +38,7 @@
 class gdash (
     $graphite_host   = $gdash::params::graphite_host,
     $gdash_root      = $gdash::params::gdash_root,
+    $gdash_source    = $gdash::param::gdash_source,
 ) inherits gdash::params {
 
     class { 'gdash::configure': }
@@ -52,7 +53,7 @@ class gdash (
         ensure          => present,
         path            => $gdash_root,
         provider        => 'git',
-        source          => 'https://github.com/ripienaar/gdash.git',
+        source          => $gdash_source,
         require         => Package['git'],
     }
 

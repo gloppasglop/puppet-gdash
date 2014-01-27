@@ -15,4 +15,5 @@
 class gdash::params {
     $graphite_host  = '127.0.0.1'
     $gdash_root     = '/usr/local/gdash'
+    $gdash_source   = 'https://github.com/ripienaar/gdash.git'
 }
