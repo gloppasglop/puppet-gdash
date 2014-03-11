@@ -44,7 +44,7 @@ class gdash (
     class { 'gdash::configure': }
 
     # Install necessary packages
-    package { [ '$gdash::params::ruby_dev_pkg', 'git' ]:
+    package { [ $gdash::params::ruby_dev_pkg, 'git' ]:
         ensure      => present,
     }
 
