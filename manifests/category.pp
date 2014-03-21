@@ -8,6 +8,7 @@ define gdash::category() {
         group   => 'root',
         mode    => '0755',
         force   => true,
-        purge   => true, 
+        purge   => true,
+        recurse => true,
     }
 }
