@@ -38,7 +38,7 @@
 class gdash (
     $graphite_host   = $gdash::params::graphite_host,
     $gdash_root      = $gdash::params::gdash_root,
-    $gdash_source    = $gdash::param::gdash_source,
+    $gdash_source    = $gdash::params::gdash_source,
 ) inherits gdash::params {
 
     class { 'gdash::configure': }
