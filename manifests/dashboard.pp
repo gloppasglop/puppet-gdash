@@ -13,6 +13,9 @@ define gdash::dashboard(
         owner   => 'root',
         group   => 'root',
         mode    => '0755',
+        purge   => true,
+        recurse => true,
+        force   => true,
     }
 
     file { "${dashboard_dir}/dash.yaml":
